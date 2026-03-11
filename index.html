@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Glash Wear - Tienda</title>
-    <!-- Font Awesome (íconos gratis) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -22,40 +20,37 @@
             </div>
         </div>
 
-        <!-- BARRA DE BÚSQUEDA (aparece al hacer clic en lupa) -->
+        <!-- BARRA DE BÚSQUEDA -->
         <div class="search-bar" id="searchBar" style="display: none;">
-            <input type="text" id="searchInput" placeholder="Buscar camisetas, jeans...">
+            <input type="text" id="searchInput" placeholder="Buscar productos...">
         </div>
 
-        <!-- SLIDER CARRUSEL -->
-        <div class="slider-container glass-card">
+        <!-- SLIDER -->
+        <div class="slider-container">
             <div class="slider" id="slider">
-                <!-- Las imágenes se cargarán desde JS -->
                 <div class="slide"><img src="https://via.placeholder.com/400x200/ff7eb3/fff?text=Oferta+1" alt="Slide 1"></div>
                 <div class="slide"><img src="https://via.placeholder.com/400x200/7f5eff/fff?text=Nueva+Coleccion" alt="Slide 2"></div>
                 <div class="slide"><img src="https://via.placeholder.com/400x200/ffd166/000?text=Descuentos" alt="Slide 3"></div>
             </div>
         </div>
 
-        <!-- BLOG / NOTAS -->
-        <div class="blog-section glass-card" style="margin:15px; padding:15px;">
+        <!-- BLOG / NOTIFICACIÓN -->
+        <div class="blog-section" id="blogSection">
             <h3>📢 Novedades</h3>
-            <p id="blogMessage">Bienvenidos a la nueva tienda. Pronto más actualizaciones.</p>
+            <p id="blogMessage">Cargando...</p>
         </div>
 
         <!-- PRODUCTOS -->
         <div class="products-section">
             <h2>🔥 Lo Último</h2>
             <div class="products-grid" id="productsGrid">
-                <!-- Los productos se cargarán desde el JSON -->
+                <p>Cargando productos...</p>
             </div>
         </div>
 
-        <!-- FLYERS DESLIZABLES -->
-        <div class="flyers-section" style="margin:15px; overflow-x:auto; white-space:nowrap; padding:10px 0;">
-            <div style="display:inline-block; width:150px; height:100px; background:#e0e0e0; border-radius:15px; margin-right:10px;"></div>
-            <div style="display:inline-block; width:150px; height:100px; background:#d0d0d0; border-radius:15px; margin-right:10px;"></div>
-            <div style="display:inline-block; width:150px; height:100px; background:#c0c0c0; border-radius:15px;"></div>
+        <!-- FLYERS -->
+        <div class="flyers-section" id="flyersSection">
+            <!-- Se llenará con JS -->
         </div>
 
         <!-- FOOTER -->
@@ -65,16 +60,39 @@
         </div>
     </div>
 
-    <!-- VENTANA MODAL DEL PRODUCTO (Pantalla completa) -->
-    <div id="productModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:1000; overflow-y:auto;">
-        <div style="padding:20px;">
-            <i class="fas fa-times" id="closeModal" style="font-size:2rem; float:right; cursor:pointer;"></i>
-            <div style="clear:both;"></div>
-            <img id="modalImage" src="" style="width:100%; border-radius:20px; margin:20px 0;">
+    <!-- MODAL DEL PRODUCTO -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modalImage" src="" alt="Producto">
             <h2 id="modalTitle"></h2>
             <p id="modalDesc"></p>
             <h3 id="modalPrice"></h3>
-            <button id="addToCartBtn" style="width:100%; padding:15px; background:#7f5eff; color:white; border:none; border-radius:30px; font-size:1.2rem; margin-top:20px;">Añadir al Carrito</button>
+            <button id="addToCartBtn" class="add-to-cart-btn">Añadir al Carrito</button>
+        </div>
+    </div>
+
+    <!-- MODAL DEL CARRITO -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-cart">&times;</span>
+            <h2>🛒 Tu Carrito</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal"></div>
+            <button id="checkoutBtn" class="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE CHECKOUT -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-checkout">&times;</span>
+            <h2>📝 Datos de Envío</h2>
+            <input type="text" id="checkoutName" placeholder="Nombre completo" class="checkout-input">
+            <input type="tel" id="checkoutPhone" placeholder="Celular" class="checkout-input">
+            <input type="email" id="checkoutEmail" placeholder="Correo electrónico" class="checkout-input">
+            <button id="submitOrderBtn" class="submit-btn">Enviar Pedido</button>
+            <div id="loadingSpinner" style="display: none;">Enviando...</div>
         </div>
     </div>
 
